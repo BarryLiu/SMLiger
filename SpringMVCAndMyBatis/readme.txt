@@ -1,11 +1,11 @@
-Õâ¸öÖ»ÊÇ×îÆÕÍ¨µÄ SpringMVC+MyBatis ÕûºÏ Demo
+è¿™ä¸ªåªæ˜¯æœ€æ™®é€šçš„ SpringMVC+MyBatis æ•´åˆ Demo
 
-ÓÃµ½
-×¢½â,Dao²éÑ¯,Mapper½Ó¿Ú²éÑ¯,db.propertiesÊı¾İ¿âÅäÖÃ
-¶ÔMySql ÖĞµÄ user µÄÒ»´ÎÔöÉ¾¸Ä²é
+ç”¨åˆ°
+æ³¨è§£,DaoæŸ¥è¯¢,Mapperæ¥å£æŸ¥è¯¢,db.propertiesæ•°æ®åº“é…ç½®
+å¯¹MySql ä¸­çš„ user çš„ä¸€æ¬¡å¢åˆ æ”¹æŸ¥
 
 
-user±í:
+userè¡¨:
 CREATE TABLE `user` (
   `userid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,

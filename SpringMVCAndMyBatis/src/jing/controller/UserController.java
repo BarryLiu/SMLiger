@@ -1,58 +1,44 @@
 package jing.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
-import jing.entity.User;
 import jing.service.UserService;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService service;
-	 
-	@RequestMapping("/list")
-	public String list(HttpServletRequest request){
+	
+	@RequestMapping("login")
+	public String login(HttpServletRequest request){
+		String userName = request.getParameter("userName");
+		String passWord = request.getParameter("passWord");
 		
-		List<User> users = service.findUsers();
-		request.setAttribute("users", users);
-		return "/main.jsp";
-	}
-	
-	@RequestMapping("toModify")
-	public String toModify(ModelMap map,User user){
-		System.out.println(user);
-		User updUser = service.findUserById(user.getUserId());
-		System.out.println(updUser);
-		map.put("user", updUser);
-		return "/modify.jsp";
-	}
-	@RequestMapping("modify")
-	public String modify(User user){
-		System.out.println(user);
-		service.update(user);
-		return "/success.jsp";
-	}
-	@RequestMapping("remove")
-	public String remove(Integer userId){
-		service.remove(userId);
-		return "/success.jsp";
-	}
-	
-	@RequestMapping("add")
-	public String add(User user){
-		service.add(user);
-		return "/success.jsp";
+		System.out.println("username:"+userName+"password:"+passWord);
+		if(userName!=null|| "".equals(userName)){
+			request.setAttribute("error_msg", "用户名不能为空");
+			return "/index.jsp";
+		}
+		if(passWord!=null|| "".equals(passWord)){
+			request.setAttribute("error_msg", "密码不能为空");
+			return "../index.jsp";
+		}
+		
+		if(userName.equals("admin")&& passWord.equals("123")){
+			return "/win7.jsp";
+		}else{
+			request.setAttribute("error_msg", "账号或密码错误");
+			return "/index.jsp";
+		}
 	}
 	
 	

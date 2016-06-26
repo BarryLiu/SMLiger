@@ -1,5 +1,5 @@
 SpringMVC:
-ÖØÒªµÄÀà:
+é‡è¦çš„ç±»:
  DispatcherServlet
  ComboPooledDataSource,
  SqlSessionFactoryBean,
@@ -7,42 +7,42 @@ SpringMVC:
  DataSourceTransactionManager
  
  
- ¶ÔÓ¦´´ÖÇ²©¿Í ¡¶´«ÖÇ²¥¿Í_Springmvc+MybatisÓÉÇ³ÈëÉîÈ«Ì×ÊÓÆµ½Ì³Ìvideo¡·
- DispatcherServlet:(Ç°¶Ë¿ØÖÆÆ÷)£º½ÓÊÕÇëÇórequest,½øĞĞÏìÓ¦ responseµ÷ÓÃ
- HandlerMapping(´¦ÀíÓ³ÉäÆ÷):¸ù¾İurl²éÕÒhandler,Ò²¿ÉÒÔÍ¨¹ı×¢½â,
- HandlerAdapter(´¦ÀíÊÊÅäÆ÷): ¸ù¾İÌØ¶¨µÄ¹æÔòÈ¥Ö´ĞĞHandler,±àĞ´handlerÊ±ĞèÒª°´ÕÕHandlerAdapterµÄÒªÇóÈ¥Ğ´
+ å¯¹åº”åˆ›æ™ºåšå®¢ ã€Šä¼ æ™ºæ’­å®¢_Springmvc+Mybatisç”±æµ…å…¥æ·±å…¨å¥—è§†é¢‘æ•™ç¨‹videoã€‹
+ DispatcherServlet:(å‰ç«¯æ§åˆ¶å™¨)ï¼šæ¥æ”¶è¯·æ±‚request,è¿›è¡Œå“åº” responseè°ƒç”¨
+ HandlerMapping(å¤„ç†æ˜ å°„å™¨):æ ¹æ®urlæŸ¥æ‰¾handler,ä¹Ÿå¯ä»¥é€šè¿‡æ³¨è§£,
+ HandlerAdapter(å¤„ç†é€‚é…å™¨): æ ¹æ®ç‰¹å®šçš„è§„åˆ™å»æ‰§è¡ŒHandler,ç¼–å†™handleræ—¶éœ€è¦æŒ‰ç…§HandlerAdapterçš„è¦æ±‚å»å†™
  
- Handler(´¦ÀíÆ÷)&(ºó¶Ë¿ØÖÆÆ÷)£ºÒªÇó³ÌĞòÔ±×Ô¼ºĞ´,³£ÓÃ×¢½â·½Ê½¡£
-	Handler´¦ÀíÆ÷Ö´ĞĞºóµÄ½á¹ûÊÇModelAndView,¾ßÌå¿ª·¢Ê±Handler·µ»ØÖµÀàĞÍ°üÀ¨String(Âß¼­ÊÓÍ¼Ãû),ModelAndView,void
-	void(Í¨¹ıÔÚHandlerĞÎ²ÎÖĞÌí¼ÓrequestºÍresponse,ÀàËÆÔ­Ê¼¿ª·¢·½Ê½),Ïàµ±ÓÚController
+ Handler(å¤„ç†å™¨)&(åç«¯æ§åˆ¶å™¨)ï¼šè¦æ±‚ç¨‹åºå‘˜è‡ªå·±å†™,å¸¸ç”¨æ³¨è§£æ–¹å¼ã€‚
+	Handlerå¤„ç†å™¨æ‰§è¡Œåçš„ç»“æœæ˜¯ModelAndView,å…·ä½“å¼€å‘æ—¶Handlerè¿”å›å€¼ç±»å‹åŒ…æ‹¬String(é€»è¾‘è§†å›¾å),ModelAndView,void
+	void(é€šè¿‡åœ¨Handlerå½¢å‚ä¸­æ·»åŠ requestå’Œresponse,ç±»ä¼¼åŸå§‹å¼€å‘æ–¹å¼),ç›¸å½“äºController
 	
- View resolver(ÊÓÍ¼½âÎöÆ÷):¸ù¾İÂß¼­ÊÓÍ¼ÃûÉú³ÉÕæÕıµÄÊÓÍ¼(ÔÚspringmvcÖĞÊ¹ÓÃView¶ÔÏó±íÊ¾)
- 	ViewÊÓÍ¼:jspÒ³Ãæ
+ View resolver(è§†å›¾è§£æå™¨):æ ¹æ®é€»è¾‘è§†å›¾åç”ŸæˆçœŸæ­£çš„è§†å›¾(åœ¨springmvcä¸­ä½¿ç”¨Viewå¯¹è±¡è¡¨ç¤º)
+ 	Viewè§†å›¾:jspé¡µé¢
 
   
-×¢½â¿ª·¢£º
-	×¢½âÓ³ÉäÆ÷ xmlÖĞbean¶ÔÏó:RequestMappingHandlerMapping
-	×¢½âÊÊÅäÆ÷ xmlÖĞbean¶ÔÏó:RequestMappingHandlerAdapter
-	ÒÔ<mvc:annotation-driven>´úÌæ´¦ÀíÆ÷ºÍÓ³ÉäÆ÷
+æ³¨è§£å¼€å‘ï¼š
+	æ³¨è§£æ˜ å°„å™¨ xmlä¸­beanå¯¹è±¡:RequestMappingHandlerMapping
+	æ³¨è§£é€‚é…å™¨ xmlä¸­beanå¯¹è±¡:RequestMappingHandlerAdapter
+	ä»¥<mvc:annotation-driven>ä»£æ›¿å¤„ç†å™¨å’Œæ˜ å°„å™¨
 
 	@Controller 
 	@Service
 	@Repository
-	×¢Èë·½Ê½ 	
-	ÊÖ¶¯
-	1.Xml ÊÖ¶¯bean ×¢Èë
+	æ³¨å…¥æ–¹å¼ 	
+	æ‰‹åŠ¨
+	1.Xml æ‰‹åŠ¨bean æ³¨å…¥
 
-	2 ×¢½â×¢Èë
+	2 æ³¨è§£æ³¨å…¥
 		2.1	@Resource
-		2.2	@Autowired(required=false£¨ÓĞµÄ»°Ã»ÓĞÅäÉÏ¾ÍÎªnull ²»±¨´í£©) ×Ô¶¯¸ù¾İÀàĞÍ×¢Èë    
-			@Autowired() @Qualifier("deptDao") °´Ãû³Æ×¢Èë
-		×Ô¶¯£¨²»½¨Òé£©
-		byType£ºÔÚbean ÖĞÉèÖÃ  auto-type="byType" 
+		2.2	@Autowired(required=falseï¼ˆæœ‰çš„è¯æ²¡æœ‰é…ä¸Šå°±ä¸ºnull ä¸æŠ¥é”™ï¼‰) è‡ªåŠ¨æ ¹æ®ç±»å‹æ³¨å…¥    
+			@Autowired() @Qualifier("deptDao") æŒ‰åç§°æ³¨å…¥
+		è‡ªåŠ¨ï¼ˆä¸å»ºè®®ï¼‰
+		byTypeï¼šåœ¨bean ä¸­è®¾ç½®  auto-type="byType" 
 		byName
 		constructor   
 		autodetect 
 		
 		
-SpringMvc: ÃæÏò·½Ê½¿ª·¢£¬ µ¥ÀıµÄ,¿ÉÒÔµ¥Àı¿ª·¢
-Struts2  £ºÃæÏòÀà¿ª·¢£¬Ö»ÄÜ¶àÀı¿ª·¢
+SpringMvc: é¢å‘æ–¹å¼å¼€å‘ï¼Œ å•ä¾‹çš„,å¯ä»¥å•ä¾‹å¼€å‘
+Struts2  ï¼šé¢å‘ç±»å¼€å‘ï¼Œåªèƒ½å¤šä¾‹å¼€å‘
  
