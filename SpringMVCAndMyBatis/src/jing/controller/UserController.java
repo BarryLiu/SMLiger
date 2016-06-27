@@ -34,10 +34,12 @@ public class UserController {
 		}
 		
 		if(userName.equals("admin")&& passWord.equals("123")){
+			System.out.println("equals");
 			return "/win7.jsp";
 		}else{
+			System.out.println("not equals");
 			request.setAttribute("error_msg", "账号或密码错误");
-			return "/index.jsp";
+			return "../win7.jsp";
 		}
 	}
 	

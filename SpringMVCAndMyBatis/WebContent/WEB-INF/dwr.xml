@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<dwr> 
+	<allow>  
+<!-- 	<create creator="spring" javascript="dwr" scope="session">
+		<param name="beanName" value="dwrBean" /> 
+	</create> -->
+	<!-- not use here -->
+	<!-- <create creator="spring" javascript="userDwr" scope="request">
+		<param name="beanName" value="dwrUser" /> 
+	</create>   -->
+	</allow>
+ </dwr>
