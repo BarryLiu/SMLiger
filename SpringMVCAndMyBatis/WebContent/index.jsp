@@ -9,15 +9,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="js/supersized/css/supersized.css?t=1">
-    <link rel="stylesheet" href="js/supersized/css/style.css?t=1">
-     
-<script src="js/supersized/js/jquery-1.8.2.min.js" ></script>
-<script src="js/supersized/js/supersized.3.2.7.min.js" ></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/js/supersized/css/supersized.css?t=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/js/supersized/css/style.css?t=1">
+    <style type="text/css">
+    .rdo {
+    width: 20px;
+    height: 17px;
+    background: rgba(45,45,45,.15);
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #3d3d3d; /* browsers that don't support rgba */
+    border: 1px solid rgba(255,255,255,.15);
+    -moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;
+    -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+}
+    </style>
+<script src="${pageContext.request.contextPath}/js/supersized/js/jquery-1.8.2.min.js" ></script>
+<script src="${pageContext.request.contextPath}/js/supersized/js/supersized.3.2.7.min.js" ></script>
 <script type="text/javascript">
     $(function() {
         $.supersized({
-
             // 功能
             slide_interval     : 2000,    // 转换之间的长度
             transition         : 1,    // 0 - 无，1 - 淡入淡出，2 - 滑动顶，3 - 滑动向右，4 - 滑底，5 - 滑块向左，6 - 旋转木马右键，7 - 左旋转木马
@@ -36,28 +50,34 @@
             // 组件
             slide_links        : 'blank',    // 个别环节为每张幻灯片（选项：假的，'民'，'名'，'空'）
             slides             : [    // 幻灯片影像
-                {image : 'js/supersized/img/1.jpg'},
-                {image : 'js/supersized/img/2.jpg'},
-                {image : 'js/supersized/img/3.jpg'},
-                {image : 'js/supersized/img/4.jpg'},
+                {image : '${pageContext.request.contextPath}/js/supersized/img/1.jpg'},
+                {image : '${pageContext.request.contextPath}/js/supersized/img/2.jpg'},
+                {image : '${pageContext.request.contextPath}/js/supersized/img/3.jpg'},
+                {image : '${pageContext.request.contextPath}/js/supersized/img/4.jpg'},
             ]
 
         });
     });
 </script>
-
 </head>
 <body>
 
 <div class="page-container">
     <h1>我的测试系统登录(Login)</h1>
-    <form  action="/Manage/user/login" id="form1" method="post">
+    <form  action="${pageContext.request.contextPath}/user/login" id="form1" method="post">
         <input type="text" id="userName" name="userName" class="username" placeholder="请输入您的用户名！">
         <input type="password" id="passWord" name="passWord" class="password" placeholder="请输入您的用户密码！">
+        <div align="left" style="">
+        	界面风格:<input type="radio" name="view_style" value="1" class="rdo" checked="checked">经典 &nbsp;&nbsp;&nbsp;&nbsp;
+        		<input type="radio"   name="view_style"  value="2" class="rdo" >win7
+         </div>
         <button id="login_btn" class="submit_button">登录</button>  <!-- type="submit"  -->
-        <div class="error"><span>${error_msg}</span></div>
+        <div style=" margin-top: 2%;" align="left" >
+        	<a style="margin-left: 0px;"  href="#">注册新号</a>
+        	<a style="margin-left: 200px;" href="#" >忘记密码</a>
+        </div>
+        <div class="error"><span>${error_msg}</span></div> 
     </form>
 </div>
-
 </body>
 </html>

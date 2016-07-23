@@ -41,8 +41,6 @@
  
  
    
- 
- 
         <div class="l-layout" id="layout1" style="height: 352.56px;" ligeruiid="layout1">
              <div class="l-layout-left" style="left: 0px; top: 55px; width: 110px; height: 241px;"><div class="l-layout-header"><div class="l-layout-header-toggle"></div><div class="l-layout-header-inner"></div></div><div class="l-layout-content" position="left"></div></div>
             <div class="l-layout-center" style="left: 115px; top: 55px; width: 1032px; height: 241px;"><div class="l-layout-header">标题</div><div title="" class="l-layout-content" style="height: 216px;" position="center">

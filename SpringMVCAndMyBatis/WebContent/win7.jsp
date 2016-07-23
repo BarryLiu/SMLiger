@@ -93,11 +93,13 @@
         }
     </style>
 </head>
-<body style="overflow: hidden; background: url(demos/dialog/images/applebg.jpg) no-repeat  center center;">
+<body style="overflow: hidden; background: url(/Manage/demos/dialog/images/applebg.jpg) no-repeat  center center;">
     <div id="winlinks">
         <ul>
         </ul>
     </div>
+    
+    
 </body>
 <script type="text/javascript">
     var LINKWIDTH = 90, LINKHEIGHT = 90, TASKBARHEIGHT = 43;
@@ -118,18 +120,18 @@
         return win;
     }
     var links = [
-            { icon: 'demos/dialog/images/3DSMAX.png', title: '填写周报', url: '../case/week.htm' },
-            { icon: 'demos/dialog/images/3DSMAX.png', title: 'treegrid', url: '../grid/treegrid/treegrid.htm' },
-            { icon: 'demos/dialog/images/3DSMAX.png', title: '多表头', url: '../grid/mulheader/grid2.htm' },
-            { icon: 'demos/dialog/images/Program Files Folder.png', title: '固定列', url: '../grid/frozen/frozengrid.htm' },
-            { icon: 'demos/dialog/images/Program Files Folder.png', title: '可拖动', url: '../base/drag.htm' },
-            { icon: 'demos/dialog/images/Alien Folder.png', title: '树', url: '../tree/draggable.htm' },
-            { icon: 'demos/dialog/images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
-            { icon: 'demos/dialog/images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
-            { icon: 'demos/dialog/images/Alien Folder.png', title: 'layout', url: '../layout/layoutFullHeight.htm' },
-             { icon: 'demos/dialog/images/Alien Folder.png', title: 'menu', url: '../menu/menubar.htm' },
-             { icon: 'demos/dialog/images/Xp-G5 006.png', title: 'tab', url: '../tab/tabHtml.htm' },
-             { icon: 'demos/dialog/images/3DSMAX.png', title: '分组', url: '../grid/groupable/checkbox.htm' }
+            { icon: '/Manage/demos/dialog/images/3DSMAX.png', title: '填写周报', url: '../case/week.htm' },
+            { icon: '/Manage/demos/dialog/images/3DSMAX.png', title: 'treegrid', url: '../grid/treegrid/treegrid.htm' },
+            { icon: '/Manage/demos/dialog/images/3DSMAX.png', title: '多表头', url: '../grid/mulheader/grid2.htm' },
+            { icon: '/Manage/demos/dialog/images/Program Files Folder.png', title: '固定列', url: '../grid/frozen/frozengrid.htm' },
+            { icon: '/Manage/demos/dialog/images/Program Files Folder.png', title: '可拖动', url: '../base/drag.htm' },
+            { icon: '/Manage/demos/dialog/images/Alien Folder.png', title: '树', url: '../tree/draggable.htm' },
+            { icon: '/Manage/demos/dialog/images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
+            { icon: '/Manage/demos/dialog/images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
+            { icon: '/Manage/demos/dialog/images/Alien Folder.png', title: 'layout', url: '../layout/layoutFullHeight.htm' },
+             { icon: '/Manage/demos/dialog/images/Alien Folder.png', title: 'menu', url: '../menu/menubar.htm' },
+             { icon: '/Manage/demos/dialog/images/Xp-G5 006.png', title: 'tab', url: '../tab/tabHtml.htm' },
+             { icon: '/Manage/demos/dialog/images/3DSMAX.png', title: '分组', url: '../grid/groupable/checkbox.htm' }
         ];
              
     function onResize() {

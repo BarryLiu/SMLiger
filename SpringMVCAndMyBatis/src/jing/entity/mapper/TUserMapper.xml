@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jing.mapperdao.TUserMapper" >
+  <resultMap id="BaseResultMap" type="jing.entity.TUser" >
+    <id column="_id" property="id" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="NVARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="NVARCHAR" />
+    <result column="email" property="email" jdbcType="NVARCHAR" />
+    <result column="is_admin" property="isAdmin" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_comments" property="updateComments" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="group_names" property="groupNames" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, username, pwd, email, is_admin, create_date, update_date, update_comments, name, 
+    user_type, group_names
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="jing.entity.TUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where _id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user
+    where _id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="jing.entity.TUserExample" >
+    delete from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="jing.entity.TUser" >
+    insert into t_user (_id, username, pwd, 
+      email, is_admin, create_date, 
+      update_date, update_comments, name, 
+      user_type, group_names)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=NVARCHAR}, #{pwd,jdbcType=NVARCHAR}, 
+      #{email,jdbcType=NVARCHAR}, #{isAdmin,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateComments,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{userType,jdbcType=INTEGER}, #{groupNames,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jing.entity.TUser" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="isAdmin != null" >
+        is_admin,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateComments != null" >
+        update_comments,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="groupNames != null" >
+        group_names,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=NVARCHAR},
+      </if>
+      <if test="isAdmin != null" >
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateComments != null" >
+        #{updateComments,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="groupNames != null" >
+        #{groupNames,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="jing.entity.TUserExample" resultType="java.lang.Integer" >
+    select count(*) from t_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.isAdmin != null" >
+        is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateComments != null" >
+        update_comments = #{record.updateComments,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupNames != null" >
+        group_names = #{record.groupNames,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user
+    set _id = #{record.id,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=NVARCHAR},
+      pwd = #{record.pwd,jdbcType=NVARCHAR},
+      email = #{record.email,jdbcType=NVARCHAR},
+      is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      update_comments = #{record.updateComments,jdbcType=NVARCHAR},
+      name = #{record.name,jdbcType=NVARCHAR},
+      user_type = #{record.userType,jdbcType=INTEGER},
+      group_names = #{record.groupNames,jdbcType=NVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="jing.entity.TUser" >
+    update t_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=NVARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=NVARCHAR},
+      </if>
+      <if test="isAdmin != null" >
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateComments != null" >
+        update_comments = #{updateComments,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="groupNames != null" >
+        group_names = #{groupNames,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jing.entity.TUser" >
+    update t_user
+    set username = #{username,jdbcType=NVARCHAR},
+      pwd = #{pwd,jdbcType=NVARCHAR},
+      email = #{email,jdbcType=NVARCHAR},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_comments = #{updateComments,jdbcType=NVARCHAR},
+      name = #{name,jdbcType=NVARCHAR},
+      user_type = #{userType,jdbcType=INTEGER},
+      group_names = #{groupNames,jdbcType=NVARCHAR}
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

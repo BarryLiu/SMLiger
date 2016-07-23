@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>帮助信息</title>
-    <link href="ligerUI/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" id="mylink"/>
     <style type="text/css">
         span {

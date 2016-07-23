@@ -4,30 +4,30 @@
 <html>
 <head>
 <title>欢迎使用管理系统</title>
-<link href="lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" id="mylink"/>
-<script src="params.js" type="text/javascript"></script>
-<script src="lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="lib/jquery/jquery.utils.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/core/base.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerMenu.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerMenuBar.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerToolBar.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerDrag.js" type="text/javascript"></script>
-<script src="lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/ligerui.all.js" type="text/javascript"></script>
-<script src="lib/ligerUI/js/plugins/ligerTab.js"></script>
-<script src="lib/jquery.cookie.js"></script>
-<script src="lib/json2.js"></script>
+<script src="${pageContext.request.contextPath}/params.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/jquery/jquery.utils.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/core/base.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerMenu.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerMenuBar.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerToolBar.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerDrag.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/ligerui.all.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerTab.js"></script>
+<script src="${pageContext.request.contextPath}/lib/jquery.cookie.js"></script>
+<script src="${pageContext.request.contextPath}/lib/json2.js"></script>
 <!-- <script src="indexdata.js?t=201603091650" type="text/javascript"></script> -->
-<script src="indexdatameal.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/indexdatameal.js" type="text/javascript"></script>
 <script type="text/javascript">
 
     var tab = null;
@@ -76,16 +76,17 @@
         });
         //树
         var treeData = indexdata1;
-        var userDepart = '${userInfo.depart}';
+        var userDepart = '';
         if (userDepart == "MANAGER") {
             treeData = indexdata2;
         } else if (userDepart == "SUPPER") {
             treeData = indexdata3;
         }
-        //alert("${userInfo.number}:${userInfo.id}:${userInfo.username}");
+         
         treeData = indexdata3; //add 20160314 tmp
-        //treeData = eval("(${sessionScope.treeData})");
-
+        //alert(treeData);
+        treeData = eval("(${treeData})");
+		//alert(treeData);
         $("#tree1").ligerTree({
             data: treeData,
             checkbox: false,
@@ -183,10 +184,10 @@
         attachLinkToFrame(tabid, prevHref + skin_links[skin]);
     }
     var skin_links = {
-        "aqua": "lib/ligerUI/skins/Aqua/css/ligerui-all.css",
-        "gray": "lib/ligerUI/skins/Gray/css/all.css",
-        "silvery": "lib/ligerUI/skins/Silvery/css/style.css",
-        "gray2014": "lib/ligerUI/skins/gray2014/css/all.css"
+        "aqua": "${pageContext.request.contextPath}/lib/ligerUI/skins/Aqua/css/ligerui-all.css",
+        "gray": "${pageContext.request.contextPath}/lib/ligerUI/skins/Gray/css/all.css",
+        "silvery": "${pageContext.request.contextPath}/lib/ligerUI/skins/Silvery/css/style.css",
+        "gray2014": "${pageContext.request.contextPath}/lib/ligerUI/skins/gray2014/css/all.css"
     };
     function pages_init() {
         var tabJson = $.cookie('liger-home-tab');
@@ -297,7 +298,7 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        background: white url('lib/images/loading.gif') no-repeat center;
+        background: white url('${pageContext.request.contextPath}/lib/images/loading.gif') no-repeat center;
         width: 100%;
         height: 100%;
         z-index: 99999;
@@ -337,7 +338,7 @@
         padding: 0;
         height: 31px;
         line-height: 31px;
-        background: url('lib/images/top.jpg') repeat-x bottom;
+        background: url('${pageContext.request.contextPath}/lib/images/top.jpg') repeat-x bottom;
         position: relative;
         border-top: 1px solid #1D438B;
     }
@@ -346,7 +347,7 @@
         color: #E7E7E7;
         padding-left: 35px;
         line-height: 26px;
-        background: url('lib/images/topicon.gif') no-repeat 10px 5px;
+        background: url('${pageContext.request.contextPath}/lib/images/topicon.gif') no-repeat 10px 5px;
     }
 
     .l-topmenu-welcome {
@@ -401,7 +402,7 @@
     </div>
     <div position="center" id="framecenter">
         <div tabid="home" title="主页" style="height:300px">
-            <iframe frameborder="0" name="home" id="home" src="home.jsp"></iframe>
+            <iframe frameborder="0" name="home" id="home" src="${pageContext.request.contextPath}/home.jsp"></iframe>
         </div>
     </div>
 </div>
@@ -416,7 +417,7 @@
                 版权所有
             </td>
             <td width="20%">
-                &nbsp;
+               Barry &nbsp;
             </td>
         </tr>
     </table>

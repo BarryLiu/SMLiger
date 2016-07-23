@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jing.mapperdao.TPermissionMapper" >
+  <resultMap id="BaseResultMap" type="jing.entity.TPermission" >
+    <id column="_id" property="id" jdbcType="BIGINT" />
+    <result column="per_name" property="perName" jdbcType="NVARCHAR" />
+    <result column="per_value" property="perValue" jdbcType="INTEGER" />
+    <result column="parent_value" property="parentValue" jdbcType="INTEGER" />
+    <result column="per_type" property="perType" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="NVARCHAR" />
+    <result column="per_desc" property="perDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, per_name, per_value, parent_value, per_type, url, per_desc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="jing.entity.TPermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_permission
+    where _id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_permission
+    where _id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="jing.entity.TPermissionExample" >
+    delete from t_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="jing.entity.TPermission" >
+    insert into t_permission (_id, per_name, per_value, 
+      parent_value, per_type, url, 
+      per_desc)
+    values (#{id,jdbcType=BIGINT}, #{perName,jdbcType=NVARCHAR}, #{perValue,jdbcType=INTEGER}, 
+      #{parentValue,jdbcType=INTEGER}, #{perType,jdbcType=INTEGER}, #{url,jdbcType=NVARCHAR}, 
+      #{perDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jing.entity.TPermission" >
+    insert into t_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="perName != null" >
+        per_name,
+      </if>
+      <if test="perValue != null" >
+        per_value,
+      </if>
+      <if test="parentValue != null" >
+        parent_value,
+      </if>
+      <if test="perType != null" >
+        per_type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="perDesc != null" >
+        per_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="perName != null" >
+        #{perName,jdbcType=NVARCHAR},
+      </if>
+      <if test="perValue != null" >
+        #{perValue,jdbcType=INTEGER},
+      </if>
+      <if test="parentValue != null" >
+        #{parentValue,jdbcType=INTEGER},
+      </if>
+      <if test="perType != null" >
+        #{perType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=NVARCHAR},
+      </if>
+      <if test="perDesc != null" >
+        #{perDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="jing.entity.TPermissionExample" resultType="java.lang.Integer" >
+    select count(*) from t_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_permission
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.perName != null" >
+        per_name = #{record.perName,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.perValue != null" >
+        per_value = #{record.perValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentValue != null" >
+        parent_value = #{record.parentValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.perType != null" >
+        per_type = #{record.perType,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.perDesc != null" >
+        per_desc = #{record.perDesc,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_permission
+    set _id = #{record.id,jdbcType=BIGINT},
+      per_name = #{record.perName,jdbcType=NVARCHAR},
+      per_value = #{record.perValue,jdbcType=INTEGER},
+      parent_value = #{record.parentValue,jdbcType=INTEGER},
+      per_type = #{record.perType,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=NVARCHAR},
+      per_desc = #{record.perDesc,jdbcType=NVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="jing.entity.TPermission" >
+    update t_permission
+    <set >
+      <if test="perName != null" >
+        per_name = #{perName,jdbcType=NVARCHAR},
+      </if>
+      <if test="perValue != null" >
+        per_value = #{perValue,jdbcType=INTEGER},
+      </if>
+      <if test="parentValue != null" >
+        parent_value = #{parentValue,jdbcType=INTEGER},
+      </if>
+      <if test="perType != null" >
+        per_type = #{perType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=NVARCHAR},
+      </if>
+      <if test="perDesc != null" >
+        per_desc = #{perDesc,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jing.entity.TPermission" >
+    update t_permission
+    set per_name = #{perName,jdbcType=NVARCHAR},
+      per_value = #{perValue,jdbcType=INTEGER},
+      parent_value = #{parentValue,jdbcType=INTEGER},
+      per_type = #{perType,jdbcType=INTEGER},
+      url = #{url,jdbcType=NVARCHAR},
+      per_desc = #{perDesc,jdbcType=NVARCHAR}
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

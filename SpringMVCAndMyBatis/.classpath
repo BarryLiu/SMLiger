@@ -50,11 +50,12 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.springframework.transaction-3.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.springframework.web-3.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.springframework.web.portlet-3.1.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.springframework.web.servlet-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.springframework.web.servlet-3.1.1.RELEASE.jar" sourcepath="F:/resource/S3的资料/2_3spring/spring-framework-3.1.1.RELEASE-with-docs.zip"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.springframework.web.struts-3.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.12.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.7.12.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dwr.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

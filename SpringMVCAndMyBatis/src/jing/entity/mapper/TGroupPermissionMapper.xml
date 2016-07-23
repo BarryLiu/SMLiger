@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jing.mapperdao.TGroupPermissionMapper" >
+  <resultMap id="BaseResultMap" type="jing.entity.TGroupPermission" >
+    <id column="_id" property="id" jdbcType="BIGINT" />
+    <result column="groupid" property="groupid" jdbcType="BIGINT" />
+    <result column="permissionid" property="permissionid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, groupid, permissionid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="jing.entity.TGroupPermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_group_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_group_permission
+    where _id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_group_permission
+    where _id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="jing.entity.TGroupPermissionExample" >
+    delete from t_group_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="jing.entity.TGroupPermission" >
+    insert into t_group_permission (_id, groupid, permissionid
+      )
+    values (#{id,jdbcType=BIGINT}, #{groupid,jdbcType=BIGINT}, #{permissionid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="jing.entity.TGroupPermission" >
+    insert into t_group_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="permissionid != null" >
+        permissionid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=BIGINT},
+      </if>
+      <if test="permissionid != null" >
+        #{permissionid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="jing.entity.TGroupPermissionExample" resultType="java.lang.Integer" >
+    select count(*) from t_group_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_group_permission
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.groupid != null" >
+        groupid = #{record.groupid,jdbcType=BIGINT},
+      </if>
+      <if test="record.permissionid != null" >
+        permissionid = #{record.permissionid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_group_permission
+    set _id = #{record.id,jdbcType=BIGINT},
+      groupid = #{record.groupid,jdbcType=BIGINT},
+      permissionid = #{record.permissionid,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="jing.entity.TGroupPermission" >
+    update t_group_permission
+    <set >
+      <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=BIGINT},
+      </if>
+      <if test="permissionid != null" >
+        permissionid = #{permissionid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jing.entity.TGroupPermission" >
+    update t_group_permission
+    set groupid = #{groupid,jdbcType=BIGINT},
+      permissionid = #{permissionid,jdbcType=BIGINT}
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

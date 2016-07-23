@@ -17,6 +17,7 @@
     <mvc:annotation-driven />
     
     <!-- 配置要用spring 注解管理的类的包路径 -->
+    <context:component-scan base-package="jing.*"/>
     <context:component-scan base-package="jing.dao"/>
     <context:component-scan base-package="jing.service"/>
     <context:component-scan base-package="jing.controller"/>
@@ -59,18 +60,24 @@
     <bean id="template" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="factory"></constructor-arg>
     </bean>
+    <!-- 以类名为Spring Bean的id -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property value="jing.mapperdao" name="basePackage"/>
+		<property value="template" name="sqlSessionTemplateBeanName"/>
+	</bean>
     
     
     
     
     <!-- 开启事务注解 -->
-	<!-- <tx:annotation-driven /> -->
+	  <tx:annotation-driven />  
     
     <!-- 配置事物 -->
     <!-- 事物管理器 -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="ds"></property>
     </bean>
+    
     <!-- 事物模板 -->
     <tx:advice id="adv1" transaction-manager="txManager">
         <tx:attributes>
@@ -85,68 +92,5 @@
     <aop:config>
 		<aop:advisor pointcut="execution(* jing.service.*Service.*(..))" advice-ref="adv1"/>        
     </aop:config>
-    
-    
-   <!--  http://www.cnblogs.com/xd502djj/archive/2012/09/24/2700490.html -->
-     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">     
-          <property name="exceptionMappings">     
-              <props>     
-                  <prop key="java.lang.Exception">errors/error</prop>     
-                  <prop key="java.lang.Throwable">errors/err</prop>     
-             </props>     
-          </property>     
-         <property name="statusCodes">     
-              <props>     
-                  <prop key="errors/error">500</prop>     
-                 <prop key="errors/404">404</prop>     
-             </props>     
-          </property>     
-          <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->     
-         <property name="warnLogCategory" value="WARN"></property>     
-          <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->     
-          <property name="defaultErrorView" value="errors/error"></property>     
-          <!-- 默认HTTP状态码 -->     
-          <property name="defaultStatusCode" value="500"></property>     
-      </bean>     
-      
-      <!--
-      <dwr:configuration>
-		<dwr:convert type="bean" class="net.blogjava.max.pws.domain.Album">
-			<dwr:exclude method="photos"/>
-		</dwr:convert>
-		<dwr:convert type="bean" class="net.blogjava.max.pws.domain.Photo">
-			<dwr:exclude method="original,poster,thumb,full,album"/>
-		</dwr:convert>
-	</dwr:configuration>
-	<dwr:controller id="dwrController" debug="true"></dwr:controller>
-	<bean id="beanDwr" class="com.wheatek.dwr.Dwr">
-		<dwr:remote javascript="dwr"></dwr:remote>
-	</bean>  -->
-	
-	<!-- <bean id="dwrBean" class="com.wheatek.dwr.Dwr">
-	</bean>
-	 -->
-    
-    
-    
-    <!-- 每天凌晨4点自动做一些任务，如删除文件 -->
-	<!-- <bean id="fileDeleteTimerTask" class="com.wheatek.timer.FileDeleteTimerTask"></bean>
-	<bean id="fileDeleteTimer" class="com.wheatek.timer.FileDeleteScheduledTimerTask">
-		<property name="delay">
-			<value>300000</value> 设置启动延迟，这里可以随意写，因为自定义类中已经拦截自行赋值了
-		</property>
-		<property name="period">
-			<value>86400000</value> 后续延迟，此处是1天
-		</property>
-		<property name="timerTask">
-			<ref local="fileDeleteTimerTask"/>
-		</property>
-	</bean>
-	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
-		<property name="scheduledTimerTasks">
-			<list>
-				<ref local="fileDeleteTimer"/>
-			</list>
-		</property>
-	</bean> -->
+   
 </beans>
