@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jing.mapperdao.TUserRefillMapper" >
+  <resultMap id="BaseResultMap" type="jing.entity.TUserRefill" >
+    <id column="_id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="info_money" property="infoMoney" jdbcType="DOUBLE" />
+    <result column="info_date" property="infoDate" jdbcType="TIMESTAMP" />
+    <result column="cur_money" property="curMoney" jdbcType="DOUBLE" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, title, user_id, user_name, info_money, info_date, cur_money, `comment`
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="jing.entity.TUserRefillExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_user_refill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_refill
+    where _id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_refill
+    where _id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="jing.entity.TUserRefillExample" >
+    delete from t_user_refill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="jing.entity.TUserRefill" >
+    insert into t_user_refill (_id, title, user_id, 
+      user_name, info_money, info_date, 
+      cur_money, `comment`)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{userName,jdbcType=VARCHAR}, #{infoMoney,jdbcType=DOUBLE}, #{infoDate,jdbcType=TIMESTAMP}, 
+      #{curMoney,jdbcType=DOUBLE}, #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jing.entity.TUserRefill" >
+    insert into t_user_refill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="infoMoney != null" >
+        info_money,
+      </if>
+      <if test="infoDate != null" >
+        info_date,
+      </if>
+      <if test="curMoney != null" >
+        cur_money,
+      </if>
+      <if test="comment != null" >
+        `comment`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoMoney != null" >
+        #{infoMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="infoDate != null" >
+        #{infoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curMoney != null" >
+        #{curMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="jing.entity.TUserRefillExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_refill
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_refill
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoMoney != null" >
+        info_money = #{record.infoMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.infoDate != null" >
+        info_date = #{record.infoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.curMoney != null" >
+        cur_money = #{record.curMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.comment != null" >
+        `comment` = #{record.comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_refill
+    set _id = #{record.id,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      info_money = #{record.infoMoney,jdbcType=DOUBLE},
+      info_date = #{record.infoDate,jdbcType=TIMESTAMP},
+      cur_money = #{record.curMoney,jdbcType=DOUBLE},
+      `comment` = #{record.comment,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="jing.entity.TUserRefill" >
+    update t_user_refill
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoMoney != null" >
+        info_money = #{infoMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="infoDate != null" >
+        info_date = #{infoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curMoney != null" >
+        cur_money = #{curMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="comment != null" >
+        `comment` = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jing.entity.TUserRefill" >
+    update t_user_refill
+    set title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      info_money = #{infoMoney,jdbcType=DOUBLE},
+      info_date = #{infoDate,jdbcType=TIMESTAMP},
+      cur_money = #{curMoney,jdbcType=DOUBLE},
+      `comment` = #{comment,jdbcType=VARCHAR}
+    where _id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

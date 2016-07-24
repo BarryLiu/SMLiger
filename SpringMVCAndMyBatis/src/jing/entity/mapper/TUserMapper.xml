@@ -3,16 +3,17 @@
 <mapper namespace="jing.mapperdao.TUserMapper" >
   <resultMap id="BaseResultMap" type="jing.entity.TUser" >
     <id column="_id" property="id" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="NVARCHAR" />
-    <result column="pwd" property="pwd" jdbcType="NVARCHAR" />
-    <result column="email" property="email" jdbcType="NVARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="is_admin" property="isAdmin" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
-    <result column="update_comments" property="updateComments" jdbcType="NVARCHAR" />
-    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="update_comments" property="updateComments" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
     <result column="user_type" property="userType" jdbcType="INTEGER" />
-    <result column="group_names" property="groupNames" jdbcType="NVARCHAR" />
+    <result column="group_names" property="groupNames" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    _id, username, pwd, email, is_admin, create_date, update_date, update_comments, name, 
-    user_type, group_names
+    _id, username, pwd, email, is_admin, money, create_date, update_date, update_comments, 
+    true_name, user_type, group_names
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="jing.entity.TUserExample" >
     select
@@ -112,13 +113,15 @@
   </delete>
   <insert id="insert" parameterType="jing.entity.TUser" >
     insert into t_user (_id, username, pwd, 
-      email, is_admin, create_date, 
-      update_date, update_comments, name, 
-      user_type, group_names)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=NVARCHAR}, #{pwd,jdbcType=NVARCHAR}, 
-      #{email,jdbcType=NVARCHAR}, #{isAdmin,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{updateDate,jdbcType=TIMESTAMP}, #{updateComments,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
-      #{userType,jdbcType=INTEGER}, #{groupNames,jdbcType=NVARCHAR})
+      email, is_admin, money, 
+      create_date, update_date, update_comments, 
+      true_name, user_type, group_names
+      )
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{isAdmin,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{updateComments,jdbcType=VARCHAR}, 
+      #{trueName,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{groupNames,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="jing.entity.TUser" >
     insert into t_user
@@ -138,6 +141,9 @@
       <if test="isAdmin != null" >
         is_admin,
       </if>
+      <if test="money != null" >
+        money,
+      </if>
       <if test="createDate != null" >
         create_date,
       </if>
@@ -147,8 +153,8 @@
       <if test="updateComments != null" >
         update_comments,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="trueName != null" >
+        true_name,
       </if>
       <if test="userType != null" >
         user_type,
@@ -162,16 +168,19 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="username != null" >
-        #{username,jdbcType=NVARCHAR},
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="pwd != null" >
-        #{pwd,jdbcType=NVARCHAR},
+        #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        #{email,jdbcType=NVARCHAR},
+        #{email,jdbcType=VARCHAR},
       </if>
       <if test="isAdmin != null" >
         #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
       </if>
       <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
@@ -180,16 +189,16 @@
         #{updateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updateComments != null" >
-        #{updateComments,jdbcType=NVARCHAR},
+        #{updateComments,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=NVARCHAR},
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
       </if>
       <if test="userType != null" >
         #{userType,jdbcType=INTEGER},
       </if>
       <if test="groupNames != null" >
-        #{groupNames,jdbcType=NVARCHAR},
+        #{groupNames,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -206,16 +215,19 @@
         _id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.username != null" >
-        username = #{record.username,jdbcType=NVARCHAR},
+        username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.pwd != null" >
-        pwd = #{record.pwd,jdbcType=NVARCHAR},
+        pwd = #{record.pwd,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null" >
-        email = #{record.email,jdbcType=NVARCHAR},
+        email = #{record.email,jdbcType=VARCHAR},
       </if>
       <if test="record.isAdmin != null" >
         is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DOUBLE},
       </if>
       <if test="record.createDate != null" >
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
@@ -224,16 +236,16 @@
         update_date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateComments != null" >
-        update_comments = #{record.updateComments,jdbcType=NVARCHAR},
+        update_comments = #{record.updateComments,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=NVARCHAR},
+      <if test="record.trueName != null" >
+        true_name = #{record.trueName,jdbcType=VARCHAR},
       </if>
       <if test="record.userType != null" >
         user_type = #{record.userType,jdbcType=INTEGER},
       </if>
       <if test="record.groupNames != null" >
-        group_names = #{record.groupNames,jdbcType=NVARCHAR},
+        group_names = #{record.groupNames,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -243,16 +255,17 @@
   <update id="updateByExample" parameterType="map" >
     update t_user
     set _id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=NVARCHAR},
-      pwd = #{record.pwd,jdbcType=NVARCHAR},
-      email = #{record.email,jdbcType=NVARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
       is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=DOUBLE},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       update_date = #{record.updateDate,jdbcType=TIMESTAMP},
-      update_comments = #{record.updateComments,jdbcType=NVARCHAR},
-      name = #{record.name,jdbcType=NVARCHAR},
+      update_comments = #{record.updateComments,jdbcType=VARCHAR},
+      true_name = #{record.trueName,jdbcType=VARCHAR},
       user_type = #{record.userType,jdbcType=INTEGER},
-      group_names = #{record.groupNames,jdbcType=NVARCHAR}
+      group_names = #{record.groupNames,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,16 +274,19 @@
     update t_user
     <set >
       <if test="username != null" >
-        username = #{username,jdbcType=NVARCHAR},
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="pwd != null" >
-        pwd = #{pwd,jdbcType=NVARCHAR},
+        pwd = #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        email = #{email,jdbcType=NVARCHAR},
+        email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="isAdmin != null" >
         is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
       </if>
       <if test="createDate != null" >
         create_date = #{createDate,jdbcType=TIMESTAMP},
@@ -279,32 +295,33 @@
         update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
       <if test="updateComments != null" >
-        update_comments = #{updateComments,jdbcType=NVARCHAR},
+        update_comments = #{updateComments,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=NVARCHAR},
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
       </if>
       <if test="userType != null" >
         user_type = #{userType,jdbcType=INTEGER},
       </if>
       <if test="groupNames != null" >
-        group_names = #{groupNames,jdbcType=NVARCHAR},
+        group_names = #{groupNames,jdbcType=VARCHAR},
       </if>
     </set>
     where _id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="jing.entity.TUser" >
     update t_user
-    set username = #{username,jdbcType=NVARCHAR},
-      pwd = #{pwd,jdbcType=NVARCHAR},
-      email = #{email,jdbcType=NVARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
       is_admin = #{isAdmin,jdbcType=INTEGER},
+      money = #{money,jdbcType=DOUBLE},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP},
-      update_comments = #{updateComments,jdbcType=NVARCHAR},
-      name = #{name,jdbcType=NVARCHAR},
+      update_comments = #{updateComments,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=INTEGER},
-      group_names = #{groupNames,jdbcType=NVARCHAR}
+      group_names = #{groupNames,jdbcType=VARCHAR}
     where _id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -13,9 +13,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-/**
- * Created by kui.li on 2014/9/2.
- */
 public class DBUtils {
     public static String DRIVER_CLASS = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String URL = "jdbc:sqlserver://localhost:1433; DatabaseName=manage_db";

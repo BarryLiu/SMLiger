@@ -13,13 +13,15 @@ public class TUser {
 
     private Integer isAdmin;
 
+    private Double money;
+
     private Date createDate;
 
     private Date updateDate;
 
     private String updateComments;
 
-    private String name;
+    private String trueName;
 
     private Integer userType;
 
@@ -65,6 +67,14 @@ public class TUser {
         this.isAdmin = isAdmin;
     }
 
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -89,12 +99,12 @@ public class TUser {
         this.updateComments = updateComments == null ? null : updateComments.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getTrueName() {
+        return trueName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setTrueName(String trueName) {
+        this.trueName = trueName == null ? null : trueName.trim();
     }
 
     public Integer getUserType() {

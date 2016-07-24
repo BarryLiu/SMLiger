@@ -6,28 +6,9 @@
 <title>欢迎使用管理系统</title>
 <link href="${pageContext.request.contextPath}/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" id="mylink"/>
-<script src="${pageContext.request.contextPath}/params.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/jquery/jquery.utils.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/core/base.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerMenu.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerMenuBar.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerToolBar.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerDrag.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/ligerui.all.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/lib/ligerUI/js/plugins/ligerTab.js"></script>
-<script src="${pageContext.request.contextPath}/lib/jquery.cookie.js"></script>
-<script src="${pageContext.request.contextPath}/lib/json2.js"></script>
-<!-- <script src="indexdata.js?t=201603091650" type="text/javascript"></script> -->
-<script src="${pageContext.request.contextPath}/indexdatameal.js" type="text/javascript"></script>
+
+<%@include file="/header.jsp" %>
+
 <script type="text/javascript">
 
     var tab = null;
@@ -83,9 +64,9 @@
             treeData = indexdata3;
         }
          
-        treeData = indexdata3; //add 20160314 tmp
+        treeData = indexdata4; //
         //alert(treeData);
-        treeData = eval("(${treeData})");
+        //treeData = eval("(${treeData})");
 		//alert(treeData);
         $("#tree1").ligerTree({
             data: treeData,
@@ -253,7 +234,7 @@
     // 退出
     logout = function () {
         $.ligerDialog.confirm('您确定要退出当前系统吗？', function (yes) {
-            window.location.href = "meal/login?op=other";
+            window.location.href = "${pageContext.request.contextPath}/user/logout";
         });
     }
 </script>
@@ -410,8 +391,8 @@
     <table width="100%" heigth="100%" border="0px" style="text-align: center;font-size: 12px;margin-top: 8px">
         <tr>
             <td align="left" width="20%">
-                &nbsp;&nbsp;<font color="red">${userInfo.name}</font> 您好！
-                <a href="login?op=other" >退出</a>
+                &nbsp;&nbsp;<font color="red">${userInfo.trueName}</font> 您好！
+                <a href="javascript:logout()" >退出</a>
             </td>
             <td width="60%">
                 版权所有
